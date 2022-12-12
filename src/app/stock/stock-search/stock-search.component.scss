@@ -1,0 +1,23 @@
+@import "../../../variables.scss";
+mat-card{
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+}
+mat-card-title{
+    font-size: 28px;
+    color: $base-color;
+    margin-bottom: 15px;
+}
+form{
+    margin-top: 15px;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 31% 31% 31%;
+    grid-gap: 33px;
+}
+mat-form-field{
+    margin-right: 20px;
+}    

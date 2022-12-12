@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>STOCK TRACKER</mat-card-title>
+    <mat-card-content>
+        <span>Enter the symbol of a stock to track (i.e. AAPL, TSLA, GOOGL)</span>       
+        <form [formGroup]="stockForm">
+            <mat-form-field>
+                <input matInput id="stockInput" formControlName="symbol" placeholder="1-5 char no whitespace">                
+            </mat-form-field>              
+            <button mat-raised-button color="primary" id="trackBtn" [disabled]="!stockForm.valid" (click)="searchStock()">Track store</button>
+        </form>
+        <mat-error *ngIf="errorMessage">
+            {{ errorMessage }}
+        </mat-error>           
+        </mat-card-content>
+</mat-card>
+<main>
+    <div class="wrapper">
+        <app-stock-item *ngFor="let data of stockData" class="box" [data]="data" (removeSymbolEvent)="removeSymbol($event)"></app-stock-item>
+    </div>
+</main>

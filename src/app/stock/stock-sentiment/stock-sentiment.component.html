@@ -1,0 +1,30 @@
+
+<mat-card>
+    <mat-card-header class="title">
+      <mat-card-title>{{ name }} ({{ sentimentResponse.symbol }})</mat-card-title>      
+    </mat-card-header>
+    <mat-card-content>         
+        <div class="sentiment-content" *ngFor="let sentiment of sentimentResponse.data">
+            <main>
+                <div class="wrapper">
+                    <div>{{ sentiment.month | dateTransform }}</div>
+                    <div class="stock-title">Change: {{ sentiment.change }}</div>
+                    <div class="stock-title">MSPR: {{ sentiment.mspr }}</div>
+                </div>
+            </main>
+            <section>
+                <mat-icon *ngIf="sentiment.change > 0" color="success" class="trending-icon">trending_up</mat-icon>
+                <mat-icon *ngIf="sentiment.change < 0" color="warn" class="trending-icon">trending_down</mat-icon>                
+            </section>
+        </div>
+        <mat-error *ngIf="errorMessage">
+            {{ errorMessage }}
+        </mat-error>      
+    </mat-card-content>
+</mat-card>
+<div>
+    <button mat-button id="backBtn" (click)="goHome()">
+    <mat-icon>chevron_left</mat-icon>
+      Back to list of stocks
+    </button>
+</div>

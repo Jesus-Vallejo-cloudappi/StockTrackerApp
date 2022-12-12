@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-header class="title">
+      <mat-card-title>{{ data.searchResult?.description }} ({{ data.searchResult?.symbol }})</mat-card-title>
+      <mat-icon class="close" id="{{'remove' + ( data.searchResult!.symbol | uppercase )}}" (click)="removeSymbol(data.searchResult!.symbol)">close</mat-icon>
+    </mat-card-header>
+    <mat-card-content>       
+    <main>
+      <div class="wrapper">
+        <div class="stock-title">Change today:</div>
+        <div class="stock-title">Opening price:</div>
+        <div>{{ data.quote!.d ? data.quote!.d + "%" : "No data found" }}</div>
+        <div>{{ data.quote!.o ? "$" + data.quote!.o : "No data found" }}</div>
+      </div>  
+      <div class="wrapper">
+        <div class="stock-title">Current price:</div>
+        <div class="stock-title">High price:</div>
+        <div>{{ data.quote!.c ? "$" + data.quote!.c : "No data found" }}</div>
+        <div>{{ data.quote!.h ? "$" + data.quote!.h : "No data found" }}</div>
+      </div>
+    </main>
+    <section>
+      <mat-icon *ngIf="data.quote!.d > 0" color="success" class="trending-icon">trending_up</mat-icon>
+      <mat-icon *ngIf="data.quote!.d < 0" color="warn" class="trending-icon">trending_down</mat-icon>
+    </section>
+    </mat-card-content>
+    <mat-card-actions>
+      <div>
+        <button mat-button id="{{'sentiment' + ( data.searchResult!.symbol | uppercase )}}"
+          [routerLink]="['/sentiment', data.searchResult!.symbol]"
+          [queryParams]="{ name: data.searchResult!.description}">
+          See sentiment details
+        </button>
+      </div>
+    </mat-card-actions>
+</mat-card>
